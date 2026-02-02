@@ -2,57 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>HENRY_PROT_02 // ONLINE</title>
+    <title>HENRY_PROT_01 - SISTEMA REINICIADO</title>
     <style>
-        body { background: #050505; color: #00ff41; font-family: monospace; display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
-        #console { flex-grow: 1; border: 1px solid #00ff41; padding: 10px; overflow-y: auto; background: rgba(0, 20, 0, 0.9); box-shadow: inset 0 0 10px #00ff41; }
-        #input-line { display: flex; margin-top: 10px; }
-        input { background: transparent; border: none; color: #00ff41; outline: none; flex-grow: 1; font-family: monospace; font-size: 1.2em; }
-        .timestamp { color: #888; font-size: 0.8em; margin-right: 10px; }
+        body { background: #000; color: #0f0; font-family: monospace; padding: 20px; }
+        .status { border: 1px solid #0f0; padding: 10px; margin-bottom: 20px; }
+        .game-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .inventory { border-left: 2px solid #0f0; padding-left: 20px; }
     </style>
 </head>
 <body>
-    <div id="status">SISTEMA: OPERACIONAL // <span id="clock">00:00:00</span></div>
-    <div id="console">
-        <p>> [INFO] Iniciando núcleo de IA HENRY_PROT_02...</p>
-        <p>> [INFO] Conexión establecida con éxito.</p>
+    <div class="status">
+        <h1>SISTEMA DE MONITOREO: CASA MISTERIOSA</h1>
+        <p>ESTADO: REINICIADO / ESCANEANDO OBJETOS...</p>
     </div>
-    <div id="input-line">
-        <span>> </span><input type="text" id="userInput" autofocus>
+
+    <div class="game-container">
+        <div class="room-view">
+            <h2>CÁMARA ACTUAL: ENTRADA</h2>
+            <div style="width: 100%; height: 200px; background: #111; display: flex; align-items: center; justify-content: center;">
+                [ IMAGEN CARGANDO... ]
+            </div>
+            <p>Objetos detectados: Llave antigua, Diario sucio.</p>
+        </div>
+
+        <div class="inventory">
+            <h3>INVENTARIO</h3>
+            <ul id="items">
+                <li>Buscando objetos...</li>
+            </ul>
+        </div>
     </div>
 
     <script>
-        // Reloj en tiempo real (Real-time data)
-        function updateClock() {
-            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
-        }
-        setInterval(updateClock, 1000);
-
-        const input = document.getElementById('userInput');
-        const consoleBox = document.getElementById('console');
-
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const val = input.value;
-                const time = new Date().toLocaleTimeString();
-                
-                // Agregar mensaje de usuario
-                consoleBox.innerHTML += `<p><span class="timestamp">[${time}]</span> USER: ${val}</p>`;
-                
-                // Respuesta de la IA
-                setTimeout(() => {
-                    let response = "PROCESANDO SOLICITUD...";
-                    if(val.toLowerCase().includes("hola")) response = "Saludos. Sistema Henry_Prot_02 activo.";
-                    if(val.toLowerCase().includes("fecha")) response = "Hoy es " + new Date().toLocaleDateString();
-                    
-                    consoleBox.innerHTML += `<p><span class="timestamp">[${time}]</span> IA: ${response}</p>`;
-                    consoleBox.scrollTop = consoleBox.scrollHeight;
-                }, 500);
-
-                input.value = '';
-            }
-        });
+        console.log("Sistema de la Casa Misteriosa activo.");
+        // Aquí volveremos a meter la lógica de los objetos una vez que GitHub se ponga en verde.
     </script>
 </body>
 </html>
-
