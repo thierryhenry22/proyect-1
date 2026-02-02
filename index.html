@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>HENRY_PROT_02 // ONLINE</title>
+    <style>
+        body { background: #050505; color: #00ff41; font-family: monospace; display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        #console { flex-grow: 1; border: 1px solid #00ff41; padding: 10px; overflow-y: auto; background: rgba(0, 20, 0, 0.9); box-shadow: inset 0 0 10px #00ff41; }
+        #input-line { display: flex; margin-top: 10px; }
+        input { background: transparent; border: none; color: #00ff41; outline: none; flex-grow: 1; font-family: monospace; font-size: 1.2em; }
+        .timestamp { color: #888; font-size: 0.8em; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div id="status">SISTEMA: OPERACIONAL // <span id="clock">00:00:00</span></div>
+    <div id="console">
+        <p>> [INFO] Iniciando núcleo de IA HENRY_PROT_02...</p>
+        <p>> [INFO] Conexión establecida con éxito.</p>
+    </div>
+    <div id="input-line">
+        <span>> </span><input type="text" id="userInput" autofocus>
+    </div>
+
+    <script>
+        // Reloj en tiempo real (Real-time data)
+        function updateClock() {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+
+        const input = document.getElementById('userInput');
+        const consoleBox = document.getElementById('console');
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const val = input.value;
+                const time = new Date().toLocaleTimeString();
+                
+                // Agregar mensaje de usuario
+                consoleBox.innerHTML += `<p><span class="timestamp">[${time}]</span> USER: ${val}</p>`;
+                
+                // Respuesta de la IA
+                setTimeout(() => {
+                    let response = "PROCESANDO SOLICITUD...";
+                    if(val.toLowerCase().includes("hola")) response = "Saludos. Sistema Henry_Prot_02 activo.";
+                    if(val.toLowerCase().includes("fecha")) response = "Hoy es " + new Date().toLocaleDateString();
+                    
+                    consoleBox.innerHTML += `<p><span class="timestamp">[${time}]</span> IA: ${response}</p>`;
+                    consoleBox.scrollTop = consoleBox.scrollHeight;
+                }, 500);
+
+                input.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
